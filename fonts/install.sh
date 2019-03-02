@@ -1,0 +1,1 @@
+cd ./fonts && find ./ -type f -exec cp {} ~/Library/Fonts \;

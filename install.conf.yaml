@@ -1,10 +1,24 @@
-- clean: ['~']
+- clean: ["~"]
+
+- shell:
+    - [git submodule update --init --recursive, Installing submodules]
 
 - link:
-    ~/.gitconfig: gitconfig
-    ~/.ssh/config:
-        path: ssh/config
-        create: true
-    ~/.zshrc: zshrc
+    # Git
+    ~/.gitconfig: config/gitconfig
+    ~/.gitignore_global: config/gitignore
 
+    # Terminal
+    ~/.zshrc: config/zshrc
+    ~/.hyper.js: config/hyper.js
 
+- link:
+    # vscode:
+    "~/Library/Application Support/Code/User/settings.json":
+      path: vscode/settings.json
+      create: true
+
+- shell:
+    # install fonts & vscode extensions
+    - [bash ./fonts/install.sh]
+    - [bash ./vscode/install.sh, Installing vscode extensions]

@@ -1,0 +1,8 @@
+tap "homebrew/bundle"
+tap "homebrew/core"
+brew "gnupg"
+brew "pass"
+brew "yarn"
+brew "z"
+brew "zsh-autosuggestions"
+brew "zsh-syntax-highlighting"

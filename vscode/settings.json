@@ -1,0 +1,7 @@
+{
+  "workbench.colorTheme": "Dracula",
+  "editor.fontSize": 15,
+  "editor.fontFamily": "'FiraCode-Retina', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "editor.formatOnSave": true
+}
