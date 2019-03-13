@@ -14,7 +14,7 @@ export ZSH="/Users/ieuanwilliams/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="cobalt2"
+ZSH_THEME="spaceship"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -76,13 +76,14 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# Aliases 
-# dotfiles
+## ----- Aliases 
+
+# --- dotfiles
 alias zshconfig="code ~/.zshrc"
 alias ohmyzsh="code ~/.oh-my-zsh"
 alias sim="open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/"
 
-# yarn cmds
+# --- yarn cmds
 alias ys="yarn start"
 alias yb="yarn build"
 alias ya="yarn add"
@@ -91,16 +92,50 @@ yad() {
     yarn add $1 --dev
 }
 
-# git cmds
+# --- git cmds
 alias gx="git checkout"
 alias gxb="git checkout -b"
 alias gc="git clone"
 
-# general
+# --- general
 alias ll="ls -l"
 alias la="ls -a"
 alias ..="cd .."
 alias ....="cd ../.."
+
+# --- image conversions
+# Convert image to datauri
+
+datauri(){
+    # Remove escapes from the spaces
+    FILE_PATH=$(echo $1 | tr -s " " "\\ ")
+
+    filename=$(basename $FILE_PATH)
+    ext=${filename##*.}
+    if [ $ext == gif ]; then
+        append="data:image/gif;base64,";
+    elif [ $ext == jpeg ] || [ $ext == jpg ]; then
+        append="data:image/jpeg;base64,";
+    elif [ $ext == png ]; then
+        append="data:image/png;base64,";
+        echo "this worked {$FILE_PATH}"
+    elif [ $ext == svg ]; then
+        append="data:image/svg+xml;base64,";
+    elif [ $ext == ico ]; then
+        append="data:image/vnd.microsoft.icon;base64,";
+    fi
+
+    #Mathias Bynens - http://superuser.com/questions/120796/os-x-base64-encode-via-command-line
+    data=$(openssl base64 < "$FILE_PATH" | tr -d '\n')
+
+    if [ "$#" -eq 2 ] && [ $2 == -img ]; then
+	    data=\<img\ src\=\"$append$data\"\>
+    else
+    	    data=$append$data
+    fi
+    echo $data | pbcopy
+}
+
 
 # Source syntax highlighting
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

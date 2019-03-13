@@ -1,7 +1,19 @@
 {
-  "workbench.colorTheme": "Dracula",
-  "editor.fontSize": 15,
+  "workbench.colorTheme": "Kai Light Accent",
+  "workbench.colorCustomizations": {
+    "[Kai Light Accent]": {
+      "editor.background": "#fff6e5",
+      "sideBar.background": "#f4f4f4"
+    }
+  },
+  "editor.fontSize": 17,
   "editor.fontFamily": "'FiraCode-Retina', Menlo, Monaco, 'Courier New', monospace",
   "editor.fontLigatures": true,
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "files.exclude": {
+    "*/node_modules/": true,
+    "node_modules/": true
+  },
+  "window.zoomLevel": 0,
+  "ruby.intellisense": "rubyLocate"
 }
